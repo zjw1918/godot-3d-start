@@ -1,3 +1,4 @@
+class_name Mob
 extends CharacterBody3D
 
 # Emitted when the player jumped on the mob.

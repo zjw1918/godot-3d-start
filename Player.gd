@@ -64,7 +64,7 @@ func _physics_process(delta):
 			
 			var dot_product := Vector3.UP.dot(collision.get_normal())
 			if  dot_product > 0.75:
-				print("dot_product", dot_product)
+				print("dot_product ", dot_product)
 				mob.squash()
 				target_velocity.y = bounce_impulse
 				break
