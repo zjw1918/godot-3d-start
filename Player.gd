@@ -13,6 +13,7 @@ signal hit
 @export var bounce_impulse = 16
 
 @onready var pivot: Node3D = $Pivot
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 var target_velocity = Vector3.ZERO
@@ -38,6 +39,10 @@ func _physics_process(delta):
 		direction = direction.normalized()
 		# Setting the basis property will affect the rotation of the node.
 		pivot.basis = Basis.looking_at(direction)
+		# when move, make the animation faster
+		animation_player.speed_scale = 4
+	else:
+		animation_player.speed_scale = 1
 		
 	# Ground Velocity
 	target_velocity.x = direction.x * speed
@@ -70,6 +75,9 @@ func _physics_process(delta):
 				break
 				
 	move_and_slide()
+	
+	# make the player arc
+	pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 
 
 func die():
